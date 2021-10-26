@@ -1,10 +1,23 @@
-import { Box, Text, Container } from "@chakra-ui/react";
+import { Box, Text, Container, VStack, HStack, Divider } from "@chakra-ui/react";
+import Section from "src/components/section";
+import Header from "./Header";
 
 export const Home = () => {
+	const sections = ["To Do", "Doing", "Done"];
+
 	return (
-		<Container maxW="xs" paddingTop="50">
-			<Box style={{ backgroundColor: "blue", height: 2000, width: "100%" }}></Box>
-		</Container>
+		<>
+			<Header />
+			<Container maxW="container.xl" paddingTop="120">
+				<Box p="6">
+					<HStack spacing={"24px"}>
+						{sections.map((value) => (
+							<Section name={value} />
+						))}
+					</HStack>
+				</Box>
+			</Container>
+		</>
 	);
 };
 
