@@ -12,7 +12,7 @@ export const Header: React.FC<{ name: string; onAdd: () => {} }> = (props) => {
 						{name}
 					</Text>
 					<Spacer />
-					<Box>
+					<Box px={1}>
 						<IconButton aria-label="Search database" icon={<AddIcon />} size="sm" float={"right"} colorScheme="blue" />
 					</Box>
 				</Flex>
