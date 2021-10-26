@@ -11,7 +11,7 @@ export const Card: React.FC<Props> = (props) => {
 	const { text } = props;
 	return (
 		<Flex p={0} w="full" alignItems="center" justifyContent="center">
-			<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md">
+			<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.100" }}>
 				<Box style={{ float: "right" }}>
 					<IconButton colorScheme="gray" aria-label="Search database" icon={<EditIcon />} size="sm" variant="ghost" />
 				</Box>

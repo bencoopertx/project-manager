@@ -13,13 +13,15 @@ export const Section: React.FC<Props> = (props) => {
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 			<Header name={name} />
 
-			{cards.map((card) => {
-				return (
-					<Box p={2} paddingTop={2}>
-						<Card text={card} />
-					</Box>
-				);
-			})}
+			<Box paddingTop={2}>
+				{cards.map((card) => {
+					return (
+						<Box p={2} paddingTop={1}>
+							<Card text={card} />
+						</Box>
+					);
+				})}
+			</Box>
 
 			<Box p={2} paddingTop={2}>
 				<Footer />
