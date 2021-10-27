@@ -1,4 +1,5 @@
 import { Text, Box, Image, Badge, Divider } from "@chakra-ui/react";
+import { DropTarget } from "react-dnd";
 import Card from "../card";
 import Footer from "./Footer";
 import { Header } from "./Header";

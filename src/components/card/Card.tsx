@@ -2,7 +2,7 @@ import { IconButton, Text } from "@chakra-ui/react";
 import React from "react";
 import { chakra, Box, Flex, useColorModeValue, Link } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-import { useDrag } from "react-dnd";
+import { DropTarget, useDrag } from "react-dnd";
 
 interface Props {
 	text: string;
@@ -44,4 +44,6 @@ export const Card: React.FC<Props> = (props) => {
 		</Flex>
 	);
 };
-export default Card;
+export default DropTarget("card", { canDrop: () => {}, drop: () => {}, hover: () => {} }, (connect, monitor) => {
+	return {};
+})(Card);
