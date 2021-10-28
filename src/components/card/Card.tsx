@@ -40,7 +40,7 @@ export const Card: React.FC<Props> = (props) => {
 	);
 
 	// this how we interact w/ stuff sent on drag
-	const [{ canDrop, isOverCurrent }, drop] = useDrop({
+	const [{ canDrop, isOverCurrent, hovered }, drop] = useDrop({
 		accept: "card",
 		canDrop: () => true,
 		hover: (item: Item, monitor) => {
@@ -63,8 +63,12 @@ export const Card: React.FC<Props> = (props) => {
 	});
 	drop(ref);
 	React.useEffect(() => {
-		setPadding(0);
-	}, [isOverCurrent]);
+		if (!hovered) {
+			setTimeout(() => {
+				setPadding(0);
+			}, 1000);
+		}
+	}, [hovered]);
 	return (
 		<div ref={ref}>
 			<Flex
@@ -78,7 +82,7 @@ export const Card: React.FC<Props> = (props) => {
 					opacity: isDragging ? 0 : 1,
 					height: isDragging ? 0 : "auto",
 				}}
-				mb={padding}
+				mt={padding}
 			>
 				<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.50" }}>
 					<Box style={{ float: "right" }}>
