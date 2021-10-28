@@ -9,6 +9,7 @@ interface Props {
 
 export const Section: React.FC<Props> = (props) => {
 	const { name } = props;
+	let id = 0;
 	const cards = ["Test", "hhhehfsofhsofshofhsofhsofhoshe", "test card so  hthehtoethoehtoehtoeno  ehtoentoheotheoh ohtoeh tohet "];
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
@@ -16,9 +17,10 @@ export const Section: React.FC<Props> = (props) => {
 
 			<Box paddingTop={2}>
 				{cards.map((card) => {
+					id += 1;
 					return (
 						<Box p={2} paddingTop={1}>
-							<Card text={card} />
+							<Card text={card} id={`${id}`} />
 						</Box>
 					);
 				})}

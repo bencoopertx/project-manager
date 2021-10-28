@@ -3,35 +3,33 @@ import React from "react";
 import { chakra, Box, Flex, useColorModeValue, Link } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { DropTarget, useDrag, ConnectDropTarget, useDrop } from "react-dnd";
+import { Ref } from "@types/react";
 
 const knightStyle: CSSProperties = {};
 
 interface Props {
 	text: string;
+	id: string;
+}
+
+interface Item {
+	ref: any;
+	id: string;
 }
 
 const handleHover = () => {};
 
 export const Card: React.FC<Props> = (props) => {
-	const { text, connectDropTarget, isShiftedDown } = props;
+	const { text, id } = props;
 	const [bottomPadding, setBottomPadding] = React.useState(0);
-	const [currentHeight, setCurrentHeight] = React.useState(0);
-	const [testRefState, setTestRefState] = React.useState(undefined);
 
 	const ref = React.useRef(null);
-	const ref2 = React.useRef(null);
-
-	React.useEffect(() => {
-		// setting the client height that is passed to useDrop
-		setCurrentHeight(ref.current.clientHeight);
-		setTestRefState(ref);
-	});
 
 	// this is the stuff we send over on drag
 	const [{ isDragging }, drag, preview] = useDrag(
 		() => ({
 			type: "card",
-			item: { id: "hey", item: currentHeight, ref: ref },
+			item: { ref: ref, id: id },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
@@ -43,9 +41,15 @@ export const Card: React.FC<Props> = (props) => {
 	const [{ canDrop, isOverCurrent }, drop] = useDrop({
 		accept: "card",
 		canDrop: () => true,
-		hover: (item, monitor) => {
-			const item2 = monitor.getItem();
+		hover: (item: Item, monitor) => {
+			const hoveredHeight = item.ref.current.clientHeight;
 			console.log("item", item.ref.current.clientHeight);
+
+			// don't apply if on the same object
+			if (item.id != id) {
+				setBottomPadding(hoveredHeight);
+			}
+
 			// get direction of hover.
 
 			// move
@@ -59,7 +63,9 @@ export const Card: React.FC<Props> = (props) => {
 		}),
 	});
 	drop(ref);
-
+	React.useEffect(() => {
+		setBottomPadding(0);
+	}, [isOverCurrent]);
 	return (
 		<div ref={ref}>
 			<Flex
@@ -73,7 +79,6 @@ export const Card: React.FC<Props> = (props) => {
 					opacity: isDragging ? 0 : 1,
 				}}
 				mb={bottomPadding}
-				itemRef={ref2}
 			>
 				<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.50" }}>
 					<Box style={{ float: "right" }}>
