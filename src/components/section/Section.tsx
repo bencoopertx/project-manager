@@ -3,6 +3,7 @@ import { DropTarget } from "react-dnd";
 import Card from "../card";
 import Footer from "./Footer";
 import { Header } from "./Header";
+import { v4 as uuidv4 } from "uuid";
 interface Props {
 	name: string;
 }
@@ -17,7 +18,7 @@ export const Section: React.FC<Props> = (props) => {
 
 			<Box paddingTop={2}>
 				{cards.map((card) => {
-					id += 1;
+					id = uuidv4();
 					return (
 						<Box p={2} paddingTop={1}>
 							<Card text={card} id={`${id}`} />

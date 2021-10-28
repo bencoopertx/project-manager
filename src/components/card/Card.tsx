@@ -17,19 +17,21 @@ interface Item {
 	id: string;
 }
 
-const handleHover = () => {};
-
 export const Card: React.FC<Props> = (props) => {
 	const { text, id } = props;
-	const [bottomPadding, setBottomPadding] = React.useState(0);
-
+	const [cardHeight, setCardHeight] = React.useState(0);
+	const [padding, setPadding] = React.useState(0);
 	const ref = React.useRef(null);
+
+	React.useEffect(() => {
+		setCardHeight(ref.current.clientHeight);
+	}, []);
 
 	// this is the stuff we send over on drag
 	const [{ isDragging }, drag, preview] = useDrag(
 		() => ({
 			type: "card",
-			item: { ref: ref, id: id },
+			item: { ref: ref, id: id, height: cardHeight },
 			collect: (monitor) => ({
 				isDragging: !!monitor.isDragging(),
 			}),
@@ -42,13 +44,10 @@ export const Card: React.FC<Props> = (props) => {
 		accept: "card",
 		canDrop: () => true,
 		hover: (item: Item, monitor) => {
-			const hoveredHeight = item.ref.current.clientHeight;
-			console.log("item", item.ref.current.clientHeight);
-
 			// don't apply if on the same object
-			if (item.id != id) {
-				setBottomPadding(hoveredHeight);
-			}
+			console.log("item height", item.height);
+
+			setPadding(item.height);
 
 			// get direction of hover.
 
@@ -64,7 +63,7 @@ export const Card: React.FC<Props> = (props) => {
 	});
 	drop(ref);
 	React.useEffect(() => {
-		setBottomPadding(0);
+		setPadding(0);
 	}, [isOverCurrent]);
 	return (
 		<div ref={ref}>
@@ -77,8 +76,9 @@ export const Card: React.FC<Props> = (props) => {
 				style={{
 					...knightStyle,
 					opacity: isDragging ? 0 : 1,
+					height: isDragging ? 0 : "auto",
 				}}
-				mb={bottomPadding}
+				mb={padding}
 			>
 				<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.50" }}>
 					<Box style={{ float: "right" }}>
