@@ -13,7 +13,7 @@ export const Home = () => {
 				<Center>
 					<Box p="6" style={{ justifyContent: "center", alignContent: "center" }}>
 						<HStack spacing={"30px"}>
-							<DragDropContext onDragEnd={() => console.log("hey")}>
+							<DragDropContext onDragEnd={() => console.log("")}>
 								{sections.map((value) => (
 									<Section name={value} />
 								))}

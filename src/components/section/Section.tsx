@@ -11,7 +11,7 @@ interface Props {
 export const Section: React.FC<Props> = (props) => {
 	const { name } = props;
 	let id = 0;
-	const cards = ["Test", "hhhehfsofhsofshofhsofhsofhoshe", "test card so  hthehtoethoehtoehtoeno  ehtoentoheotheoh ohtoeh tohet "];
+	const cards = ["Test", "Hey", "are"];
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 			<Header name={name} />

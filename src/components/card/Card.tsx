@@ -29,32 +29,30 @@ export const Card: React.FC<Props> = (props) => {
 	return (
 		<Draggable draggableId={id} index={index}>
 			{(provided) => (
-				<Box {...provided.dragHandleProps} {...provided.draggableProps} innerRef={provided.innerRef} ref={provided.innerRef}>
-					<Box>
-						<div ref={ref}>
-							<div>
-								<Flex
-									p={0}
-									w="full"
-									alignItems="center"
-									justifyContent="center"
-									style={{
-										...knightStyle,
-									}}
-									mt={padding}
-								>
-									<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.50" }}>
-										<Box style={{ float: "right" }}>
-											<IconButton colorScheme="gray" aria-label="Search database" icon={<EditIcon />} size="sm" variant="ghost" />
-										</Box>
-										<Box px={1}>
-											<Text>{text}</Text>
-										</Box>
+				<Box {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef} p={2} paddingTop={1}>
+					<div ref={ref}>
+						<div>
+							<Flex
+								p={0}
+								w="full"
+								alignItems="center"
+								justifyContent="center"
+								style={{
+									...knightStyle,
+								}}
+								mt={padding}
+							>
+								<Box w="full" maxW="sm" mx="auto" px={1} py={1} bg={useColorModeValue("white", "gray.800")} borderWidth="1px" rounded="md" _hover={{ backgroundColor: "gray.50" }}>
+									<Box style={{ float: "right" }}>
+										<IconButton colorScheme="gray" aria-label="Search database" icon={<EditIcon />} size="sm" variant="ghost" />
 									</Box>
-								</Flex>
-							</div>
+									<Box px={1}>
+										<Text>{text}</Text>
+									</Box>
+								</Box>
+							</Flex>
 						</div>
-					</Box>
+					</div>
 				</Box>
 			)}
 		</Draggable>
