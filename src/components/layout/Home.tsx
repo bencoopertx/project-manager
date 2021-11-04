@@ -1,9 +1,10 @@
 import { Box, Text, Container, VStack, HStack, Divider, Center } from "@chakra-ui/react";
+import { DragDropContext } from "react-beautiful-dnd";
 import Section from "src/components/section";
 import Header from "./Header";
 
 export const Home = () => {
-	const sections = ["To Do", "Doing", "Done"];
+	const sections = ["To Do"];
 
 	return (
 		<>
@@ -12,9 +13,11 @@ export const Home = () => {
 				<Center>
 					<Box p="6" style={{ justifyContent: "center", alignContent: "center" }}>
 						<HStack spacing={"30px"}>
-							{sections.map((value) => (
-								<Section name={value} />
-							))}
+							<DragDropContext onDragEnd={() => console.log("hey")}>
+								{sections.map((value) => (
+									<Section name={value} />
+								))}
+							</DragDropContext>
 						</HStack>
 					</Box>
 				</Center>
