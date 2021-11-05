@@ -11,7 +11,7 @@ interface Props {
 export const Section: React.FC<Props> = (props) => {
 	const { name } = props;
 	let id = 0;
-	const cards = ["Test", "Hey", "are"];
+	const cards = ["Test", "Hdjdjdjdjdjjdjdjdjjdjdjdjdjdjdjjdjdjjdjdjdey", "are"];
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 			<Header name={name} />
@@ -23,11 +23,7 @@ export const Section: React.FC<Props> = (props) => {
 							<ul {...provided.droppableProps} ref={provided.innerRef}>
 								{cards.map((card, index) => {
 									id = uuidv4();
-									return (
-										<Box p={2} paddingTop={1}>
-											<Card text={card} id={card} index={index} />
-										</Box>
-									);
+									return <Card text={card} id={card} index={index} />;
 								})}
 								{provided.placeholder}
 							</ul>
