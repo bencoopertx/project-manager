@@ -1,5 +1,6 @@
 import { Box, Text, Container, VStack, HStack, Divider, Center } from "@chakra-ui/react";
 import { DragDropContext } from "react-beautiful-dnd";
+import React from "react";
 import Section from "src/components/section";
 import Header from "./Header";
 
