@@ -1,9 +1,3 @@
 
-PUT http://localhost:3000/api/test/test/cards HTTP/1.1
-content-type: application/json
-
-{
-    "_id": "6185eb1eb98e1427261c4035",
-    "name": "heyd"
-}
+GET http://localhost:3000/api/test/test/6185eb1eb98e1427261c4035 HTTP/1.1
 
