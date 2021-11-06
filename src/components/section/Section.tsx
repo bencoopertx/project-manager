@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import { Header } from "./Header";
 import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Draggable, Droppable, DroppableProps } from "react-beautiful-dnd";
+import { AddCard } from "../cardForms/AddCard";
+import React from "react";
 interface Props {
 	name: string;
 }
@@ -12,6 +14,7 @@ export const Section: React.FC<Props> = (props) => {
 	const { name } = props;
 	let id = 0;
 	const cards = ["Test", "Hdjdjdjdjdjjdjdjdjjdjdjdjdjdjdjjdjdjjdjdjdey", "are"];
+	const [addVisible, setAddVisible] = React.useState(true);
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 			<Header name={name} />
@@ -33,7 +36,7 @@ export const Section: React.FC<Props> = (props) => {
 			</Box>
 
 			<Box p={2} paddingTop={2}>
-				<Footer />
+				{addVisible ? <AddCard /> : <Footer />}
 			</Box>
 		</Box>
 	);
