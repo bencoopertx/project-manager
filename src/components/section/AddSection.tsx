@@ -3,7 +3,7 @@ import Card from "../card";
 import { Header } from "./Header";
 import React from "react";
 import { AddIcon } from "@chakra-ui/icons";
-import { addSection } from "src/lib/api/sections";
+import { addSection } from "src/lib/api/sectionCrud";
 import { Formik, Form, Field } from "formik";
 
 interface Props {}
@@ -33,9 +33,11 @@ export const AddSection: React.FC<Props> = (props) => {
 									}
 									return errors;
 								}}
-								onSubmit={(values, { setSubmitting }) => {
+								onSubmit={async (values, actions) => {
+									actions.setFieldValue("name", "hey", false);
+									actions.setValues({ name: "hey" }, false);
 									setTimeout(() => {
-										setSubmitting(false);
+										actions.setSubmitting(false);
 										submit(values.name);
 									}, 400);
 								}}
@@ -59,9 +61,22 @@ export const AddSection: React.FC<Props> = (props) => {
 															<Box w="full" maxW="sm" mx="auto" rounded="md" bg={useColorModeValue("white", "gray.800")}>
 																<Box style={{ float: "right" }}></Box>
 																<Box>
-																	<FormControl>
-																		<Input {...field} id="name" placeholder="Enter name of section..." w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" resize="vertical" maxH={250} />
-																	</FormControl>
+																	<Input
+																		{...field}
+																		{...form}
+																		id="name"
+																		placeholder="Enter name of section..."
+																		w="full"
+																		maxW="sm"
+																		mx="auto"
+																		px={1}
+																		py={1}
+																		rounded="md"
+																		resize="vertical"
+																		maxH={250}
+																		value={field}
+																		defaultValue={values.name}
+																	/>
 																</Box>
 															</Box>
 														</Flex>

@@ -4,7 +4,7 @@ import React from "react";
 import Section from "src/components/section";
 import Header from "./Header";
 import AddSection from "../section/AddSection";
-import { addSection } from "src/lib/api/sections";
+import { addSection } from "src/lib/api/sectionCrud";
 
 interface Props {}
 

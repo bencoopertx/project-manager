@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Draggable, Droppable, DroppableProps } from "react-beautiful-dnd";
 import { AddCard } from "../cardForms/AddCard";
 import React from "react";
-import { addCard } from "src/lib/api/cards";
+import { addCard } from "src/lib/api/cardCrud";
 interface Props {
 	name: string;
 	id: string;

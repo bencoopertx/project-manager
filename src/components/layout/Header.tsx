@@ -29,7 +29,7 @@ export const Header = (props) => {
 			<Flex
 				bg={useColorModeValue("white", "gray.800")}
 				color={useColorModeValue("gray.600", "white")}
-				pos={{ base: "inherit", md: "fixed" }}
+				pos={{ base: "inherit", md: "absolute" }}
 				w={["760", "full"]}
 				minH={"60px"}
 				py={{ base: 2 }}
@@ -41,6 +41,8 @@ export const Header = (props) => {
 				css={{
 					backdropFilter: "saturate(180%) blur(5px)",
 					backgroundColor: useColorModeValue("rgba(255, 255, 255, 0.8)", "rgba(26, 32, 44, 0.8)"),
+					zIndex: 1000,
+					position: "absolute",
 				}}
 				justifyContent={{ base: "inherit", md: "center" }}
 			>

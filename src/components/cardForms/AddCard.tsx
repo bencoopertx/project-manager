@@ -33,7 +33,8 @@ export const AddCard: React.FC<Props> = (props) => {
 							}
 							return errors;
 						}}
-						onSubmit={(values, { setSubmitting }) => {
+						onSubmit={(values, { setSubmitting, resetForm }) => {
+							resetForm();
 							setTimeout(() => {
 								setSubmitting(false);
 								onSubmit(values.name);
