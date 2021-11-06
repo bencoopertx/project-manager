@@ -25,12 +25,7 @@ export default async (req, res) => {
 				res.status(400).json({ success: false });
 			}
 			break;
-		case "POST":
-			card = await Card.create({
-				name: req.body.name,
-			});
 
-			break;
 		case "DELETE":
 			try {
 				card = await Card.deleteOne({ _id: req.body._id });
@@ -47,7 +42,13 @@ export default async (req, res) => {
 
 		case "PUT":
 			try {
+				const oldCard = await Card.findById(id);
 				card = await Card.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+
+				if (oldCard.index != card.index || oldCard.sectionId != card.sectionId) {
+					console.log("incrementing");
+					await Card.updateMany({ sectionId: card.sectionId, index: { $gt: card.index } }, { $inc: { index: 1 } });
+				}
 
 				if (!card) {
 					return res.status(400).json({ success: false });

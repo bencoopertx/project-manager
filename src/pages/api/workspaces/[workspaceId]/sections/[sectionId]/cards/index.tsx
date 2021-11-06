@@ -14,7 +14,9 @@ export default async (req, res) => {
 	switch (method) {
 		case "GET":
 			try {
-				cards = await Card.find({ sectionId: sectionId });
+				cards = await Card.find({ sectionId: sectionId }).sort({
+					index: 1,
+				});
 
 				if (!cards) {
 					return res.status(400).json({});

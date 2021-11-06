@@ -23,7 +23,6 @@ export const Section: React.FC<Props> = (props) => {
 
 		let x = await res.json();
 		x = x.data;
-		console.log("x", x);
 		if (x != undefined) {
 			setCards(x);
 		}
@@ -33,6 +32,7 @@ export const Section: React.FC<Props> = (props) => {
 		getCards();
 	});
 
+	// droppable ids are section ids, draggable ids are card ids!
 	return (
 		<Box position="relative" width={230}>
 			<Box position="absolute" top={0}>
@@ -40,12 +40,12 @@ export const Section: React.FC<Props> = (props) => {
 					<Header name={name} />
 
 					<Box paddingTop={2}>
-						<Droppable droppableId={name}>
+						<Droppable droppableId={id}>
 							{(provided) => {
 								return (
 									<ul {...provided.droppableProps} ref={provided.innerRef}>
-										{cards.map(({ name }, index) => {
-											return <Card text={name} id={name} index={index} />;
+										{cards.map(({ name, _id }, index) => {
+											return <Card text={name} id={_id} index={index} />;
 										})}
 										{provided.placeholder}
 									</ul>
