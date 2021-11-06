@@ -56,12 +56,11 @@ export const AddCard: React.FC<Props> = (props) => {
 									{({ field, form }) => (
 										<div>
 											<Flex p={0} w="full" alignItems="center" justifyContent="center" style={{}} mt={padding}>
-												<Box w="full" maxW="sm" mx="auto" rounded="md">
+												<Box w="full" maxW="sm" mx="auto" rounded="md" bg={useColorModeValue("white", "gray.800")}>
 													<Box style={{ float: "right" }}></Box>
 													<Box>
-														<FormControl isInvalid={form.errors.name && form.touched.name}>
+														<FormControl>
 															<Textarea {...field} id="name" placeholder="Enter title for card..." w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" resize="vertical" maxH={250} />
-															<FormErrorMessage>{form.errors.name}</FormErrorMessage>
 														</FormControl>
 													</Box>
 												</Box>

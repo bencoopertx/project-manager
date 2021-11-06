@@ -3,9 +3,11 @@ import { DragDropContext } from "react-beautiful-dnd";
 import React from "react";
 import Section from "src/components/section";
 import Header from "./Header";
+import AddSection from "../section/AddSection";
+import { addSection } from "src/lib/api/sections";
 
 export const Home = () => {
-	const sections = ["To Do"];
+	const sections = ["To Do", "Doing", "Done"];
 
 	return (
 		<>
@@ -19,6 +21,7 @@ export const Home = () => {
 									<Section name={value} />
 								))}
 							</DragDropContext>
+							<AddSection />
 						</HStack>
 					</Box>
 				</Center>
