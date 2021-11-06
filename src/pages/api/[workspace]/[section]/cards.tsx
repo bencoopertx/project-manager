@@ -8,7 +8,7 @@ export default async (req, res) => {
 		const movies = await db.collection("cards").find({}).sort({ metacritic: -1 }).limit(20).toArray();
 
 		res.json(movies);
-	} else {
+	} else if (req.method === "POST") {
 		const movies = await db.collection("cards").insert({ name: "Hey" });
 
 		res.json(movies);

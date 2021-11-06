@@ -16,6 +16,7 @@
     "@types/react-beautiful-dnd": "^13.1.2",
     "framer-motion": "^4",
     "mongodb": "3.5.9",
+    "mongoose": "^6.0.12",
     "net": "^1.0.2",
     "next": "^11.0.0",
     "react": "17.0.2",
@@ -23,7 +24,8 @@
     "react-dnd-html5-backend": "^14.0.2",
     "react-dom": "17.0.2",
     "tls": "^0.0.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",

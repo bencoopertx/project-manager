@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+let mongoose = require("mongoose");
 
 const uri = process.env.MONGODB_URI;
 const options = {
