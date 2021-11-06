@@ -1,6 +1,6 @@
 import { IconButton, Text, Container } from "@chakra-ui/react";
 import React from "react";
-import { chakra, Box, Flex, useColorModeValue, Link, useDisclosure, Input, Button, FormLabel, FormControl, FormErrorMessage } from "@chakra-ui/react";
+import { chakra, Box, Flex, useColorModeValue, Link, useDisclosure, Input, Button, FormLabel, FormControl, FormErrorMessage, Textarea } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { DropTarget, useDrag, ConnectDropTarget, useDrop } from "react-dnd";
 import { Ref } from "@types/react";
@@ -59,7 +59,7 @@ export const AddCard: React.FC<Props> = (props) => {
 													<Box style={{ float: "right" }}></Box>
 													<Box>
 														<FormControl isInvalid={form.errors.name && form.touched.name}>
-															<Input {...field} id="name" placeholder="name" w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" />
+															<Textarea {...field} id="name" placeholder="name" w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" resize="vertical" maxH={250} />
 															<FormErrorMessage>{form.errors.name}</FormErrorMessage>
 														</FormControl>
 													</Box>
@@ -68,7 +68,7 @@ export const AddCard: React.FC<Props> = (props) => {
 										</div>
 									)}
 								</Field>
-								<Button mt={4} colorScheme="teal" type="submit" size="sm">
+								<Button mt={4} colorScheme="teal" type="submit" size="md">
 									Submit
 								</Button>
 							</Form>
