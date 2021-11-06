@@ -1,6 +1,6 @@
 import { Text, Box, Image, Badge, Divider, Container } from "@chakra-ui/react";
 import Card from "../card";
-import Footer from "./Footer";
+import Footer from "./SectionFooter";
 import { Header } from "./Header";
 import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Draggable, Droppable, DroppableProps } from "react-beautiful-dnd";
@@ -16,6 +16,7 @@ export const Section: React.FC<Props> = (props) => {
 	const { name, id } = props;
 	const [cards, setCards] = React.useState([]);
 	const [addVisible, setAddVisible] = React.useState(true);
+	const toggleAddVisible = () => setAddVisible(!addVisible);
 
 	const getCards = async () => {
 		const res = await fetch(`http://localhost:3000/api/workspaces/1/sections/${id}/cards/`);
@@ -59,9 +60,10 @@ export const Section: React.FC<Props> = (props) => {
 								onSubmit={(name: string) => {
 									addCard({ name: name, sectionId: id, index: cards.length - 1 });
 								}}
+								hide={() => setAddVisible(false)}
 							/>
 						) : (
-							<Footer />
+							<Footer setAddVisible={() => setAddVisible(true)} />
 						)}
 					</Box>
 				</Box>

@@ -1,7 +1,7 @@
 import { IconButton, Text, Container } from "@chakra-ui/react";
 import React from "react";
-import { chakra, Box, Flex, useColorModeValue, Link, useDisclosure, Input, Button, FormLabel, FormControl, FormErrorMessage, Textarea } from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
+import { chakra, Box, Flex, useColorModeValue, Link, useDisclosure, Input, Button, FormLabel, FormControl, FormErrorMessage, Textarea, HStack } from "@chakra-ui/react";
+import { AddIcon, EditIcon, CloseIcon } from "@chakra-ui/icons";
 import { DropTarget, useDrag, ConnectDropTarget, useDrop } from "react-dnd";
 import { Ref } from "@types/react";
 import { Draggable } from "react-beautiful-dnd";
@@ -11,10 +11,11 @@ import { Formik, Form, Field } from "formik";
 
 interface Props {
 	onSubmit: (name: string) => any;
+	hide: () => any;
 }
 
 export const AddCard: React.FC<Props> = (props) => {
-	const { onSubmit } = props;
+	const { onSubmit, hide } = props;
 	const [cardHeight, setCardHeight] = React.useState(0);
 	const [padding, setPadding] = React.useState(0);
 	const ref = React.useRef(null);
@@ -68,9 +69,12 @@ export const AddCard: React.FC<Props> = (props) => {
 										</div>
 									)}
 								</Field>
-								<Button mt={4} colorScheme="teal" type="submit" size="md">
-									Submit
-								</Button>
+								<HStack mt={4}>
+									<Button colorScheme="teal" type="submit" size="md">
+										Submit
+									</Button>
+									<IconButton colorScheme="gray" aria-label="Search database" icon={<CloseIcon />} variant="ghost" onClick={hide} />
+								</HStack>
 							</Form>
 						)}
 					</Formik>
