@@ -1,16 +1,26 @@
 import clientPromise from "src/lib/mongo/connect";
+import connect from "src/lib/mongo/connect";
+import Card from "src/models/Card";
+
+connect();
 
 export default async (req, res) => {
-	const client = await clientPromise;
-	const db = client.db("project-manager");
+	const { method } = req;
 
-	if (req.method === "GET") {
-		const movies = await db.collection("cards").find({}).sort({ metacritic: -1 }).limit(20).toArray();
+	switch (method) {
+		case "GET":
+			const todos = await Card.find({});
 
-		res.json(movies);
-	} else if (req.method === "POST") {
-		const movies = await db.collection("cards").insert({ name: "Hey" });
+			res.json(todos);
+			break;
+		case "POST":
+			const note = await Card.create({
+				name: req.body.name,
+			});
 
-		res.json(movies);
+			break;
+
+		default:
+			break;
 	}
 };

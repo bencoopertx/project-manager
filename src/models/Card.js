@@ -6,9 +6,6 @@ const TodoSchema = new mongoose.Schema({
 		required: [true, "Please add a name"],
 		maxlength: [256, "Cannot be more than 256 characters"],
 	},
-	id: {
-		type: String,
-		required: [true, "Please add an ID"],
-		unique: true,
-	},
 });
+
+module.exports = mongoose.models.Todo || mongoose.model("Card", TodoSchema);
