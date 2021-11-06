@@ -9,10 +9,12 @@ import { v4 as uuidv4 } from "uuid";
 import AddModal from "../cardForms/EditModal";
 import { Formik, Form, Field } from "formik";
 
-interface Props {}
+interface Props {
+	onSubmit: (name: string) => any;
+}
 
 export const AddCard: React.FC<Props> = (props) => {
-	const { text, id, index } = props;
+	const { onSubmit } = props;
 	const [cardHeight, setCardHeight] = React.useState(0);
 	const [padding, setPadding] = React.useState(0);
 	const ref = React.useRef(null);
@@ -23,13 +25,11 @@ export const AddCard: React.FC<Props> = (props) => {
 			<div>
 				<div>
 					<Formik
-						initialValues={{ email: "", password: "" }}
+						initialValues={{ name: "" }}
 						validate={(values) => {
 							const errors = {};
-							if (!values.email) {
-								errors.email = "Required";
-							} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-								errors.email = "Invalid email address";
+							if (!values.name) {
+								errors.name = "Required";
 							}
 							return errors;
 						}}
@@ -37,6 +37,7 @@ export const AddCard: React.FC<Props> = (props) => {
 							setTimeout(() => {
 								alert(JSON.stringify(values, null, 2));
 								setSubmitting(false);
+								onSubmit(values.name);
 							}, 400);
 						}}
 					>
@@ -59,7 +60,7 @@ export const AddCard: React.FC<Props> = (props) => {
 													<Box style={{ float: "right" }}></Box>
 													<Box>
 														<FormControl isInvalid={form.errors.name && form.touched.name}>
-															<Textarea {...field} id="name" placeholder="name" w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" resize="vertical" maxH={250} />
+															<Textarea {...field} id="name" placeholder="Enter title for card..." w="full" maxW="sm" mx="auto" px={1} py={1} rounded="md" resize="vertical" maxH={250} />
 															<FormErrorMessage>{form.errors.name}</FormErrorMessage>
 														</FormControl>
 													</Box>

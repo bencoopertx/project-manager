@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Draggable, Droppable, DroppableProps } from "react-beautiful-dnd";
 import { AddCard } from "../cardForms/AddCard";
 import React from "react";
+import { addCard } from "src/lib/api/cards";
 interface Props {
 	name: string;
 }
@@ -36,7 +37,15 @@ export const Section: React.FC<Props> = (props) => {
 			</Box>
 
 			<Box p={2} paddingTop={2}>
-				{addVisible ? <AddCard /> : <Footer />}
+				{addVisible ? (
+					<AddCard
+						onSubmit={(name: string) => {
+							addCard({ name: name });
+						}}
+					/>
+				) : (
+					<Footer />
+				)}
 			</Box>
 		</Box>
 	);
