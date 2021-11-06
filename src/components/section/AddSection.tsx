@@ -35,7 +35,6 @@ export const AddSection: React.FC<Props> = (props) => {
 								}}
 								onSubmit={(values, { setSubmitting }) => {
 									setTimeout(() => {
-										alert(JSON.stringify(values, null, 2));
 										setSubmitting(false);
 										submit(values.name);
 									}, 400);

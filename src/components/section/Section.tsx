@@ -33,34 +33,38 @@ export const Section: React.FC<Props> = (props) => {
 	});
 
 	return (
-		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
-			<Header name={name} />
+		<Box position="relative" width={230}>
+			<Box position="absolute" top={0}>
+				<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
+					<Header name={name} />
 
-			<Box paddingTop={2}>
-				<Droppable droppableId={name}>
-					{(provided) => {
-						return (
-							<ul {...provided.droppableProps} ref={provided.innerRef}>
-								{cards.map(({ name }, index) => {
-									return <Card text={name} id={name} index={index} />;
-								})}
-								{provided.placeholder}
-							</ul>
-						);
-					}}
-				</Droppable>
-			</Box>
+					<Box paddingTop={2}>
+						<Droppable droppableId={name}>
+							{(provided) => {
+								return (
+									<ul {...provided.droppableProps} ref={provided.innerRef}>
+										{cards.map(({ name }, index) => {
+											return <Card text={name} id={name} index={index} />;
+										})}
+										{provided.placeholder}
+									</ul>
+								);
+							}}
+						</Droppable>
+					</Box>
 
-			<Box p={2} paddingTop={2}>
-				{addVisible ? (
-					<AddCard
-						onSubmit={(name: string) => {
-							addCard({ name: name, sectionId: id });
-						}}
-					/>
-				) : (
-					<Footer />
-				)}
+					<Box p={2} paddingTop={2}>
+						{addVisible ? (
+							<AddCard
+								onSubmit={(name: string) => {
+									addCard({ name: name, sectionId: id });
+								}}
+							/>
+						) : (
+							<Footer />
+						)}
+					</Box>
+				</Box>
 			</Box>
 		</Box>
 	);

@@ -35,7 +35,6 @@ export const AddCard: React.FC<Props> = (props) => {
 						}}
 						onSubmit={(values, { setSubmitting }) => {
 							setTimeout(() => {
-								alert(JSON.stringify(values, null, 2));
 								setSubmitting(false);
 								onSubmit(values.name);
 							}, 400);
