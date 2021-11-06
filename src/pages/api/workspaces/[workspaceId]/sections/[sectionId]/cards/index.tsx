@@ -7,14 +7,14 @@ connect();
 export default async (req, res) => {
 	const {
 		method,
-		query: { id },
+		query: { id, sectionId },
 	} = req;
 
 	let cards;
 	switch (method) {
 		case "GET":
 			try {
-				cards = await Card.find({});
+				cards = await Card.find({ sectionId: sectionId });
 
 				if (!cards) {
 					return res.status(400).json({});

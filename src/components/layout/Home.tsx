@@ -25,8 +25,6 @@ export const Home: React.FC<Props> = (props) => {
 		getSections();
 	});
 
-	getSections();
-
 	return (
 		<>
 			<Header />
@@ -35,8 +33,8 @@ export const Home: React.FC<Props> = (props) => {
 					<Box p="6" style={{ justifyContent: "center", alignContent: "center" }}>
 						<HStack spacing={"30px"}>
 							<DragDropContext onDragEnd={() => console.log("")}>
-								{sections.map(({ name }) => (
-									<Section name={name} />
+								{sections.map(({ name, _id }) => (
+									<Section name={name} id={_id} />
 								))}
 							</DragDropContext>
 							<AddSection />

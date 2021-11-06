@@ -9,13 +9,28 @@ import React from "react";
 import { addCard } from "src/lib/api/cards";
 interface Props {
 	name: string;
+	id: string;
 }
 
 export const Section: React.FC<Props> = (props) => {
-	const { name } = props;
-	let id = 0;
-	const cards = ["Test", "Hdjdjdjdjdjjdjdjdjjdjdjdjdjdjdjjdjdjjdjdjdey", "are"];
+	const { name, id } = props;
+	const [cards, setCards] = React.useState([]);
 	const [addVisible, setAddVisible] = React.useState(true);
+
+	const getCards = async () => {
+		const res = await fetch(`http://localhost:3000/api/workspaces/1/sections/${id}/cards/`);
+
+		let x = await res.json();
+		x = x.data;
+		console.log("x", x);
+		if (x != undefined) {
+			setCards(x);
+		}
+	};
+
+	React.useState(() => {
+		getCards();
+	});
 
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
@@ -26,9 +41,8 @@ export const Section: React.FC<Props> = (props) => {
 					{(provided) => {
 						return (
 							<ul {...provided.droppableProps} ref={provided.innerRef}>
-								{cards.map((card, index) => {
-									id = uuidv4();
-									return <Card text={card} id={card} index={index} />;
+								{cards.map(({ name }, index) => {
+									return <Card text={name} id={name} index={index} />;
 								})}
 								{provided.placeholder}
 							</ul>
@@ -41,7 +55,7 @@ export const Section: React.FC<Props> = (props) => {
 				{addVisible ? (
 					<AddCard
 						onSubmit={(name: string) => {
-							addCard({ name: name });
+							addCard({ name: name, sectionId: id });
 						}}
 					/>
 				) : (

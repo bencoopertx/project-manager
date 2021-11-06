@@ -7,7 +7,7 @@ connect();
 export default async (req, res) => {
 	const {
 		method,
-		query: { id },
+		query: { id, sectionId },
 	} = req;
 
 	let card;
