@@ -1,7 +1,8 @@
 import Head from "next/head";
 import React from "react";
 import Layout from "src/components/layout";
-function Home({ isConnected }) {
+const Home = ({ isConnected, sections }) => {
+	console.log("sections", sections);
 	return (
 		<div className="container">
 			<Head>
@@ -12,12 +13,13 @@ function Home({ isConnected }) {
 			<Layout />
 		</div>
 	);
-}
+};
 
-export async function getStaticProps() {
-	return {
-		props: {}, // will be passed to the page component as props
-	};
-}
+Home.getInitialProps = async () => {
+	const res = await fetch("http://localhost:3000/api/workspaces/1/sections");
+	const { data } = await res.json();
+
+	return { sections: data };
+};
 
 export default Home;

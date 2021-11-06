@@ -1,8 +1,8 @@
-import { Text, Box, Image, Badge, Divider, Flex, useColorModeValue, IconButton, FormControl, Textarea, Button, Input } from "@chakra-ui/react";
+import { Text, Box, Image, Badge, Divider, Flex, useColorModeValue, IconButton, FormControl, Textarea, Button, Input, HStack, Center } from "@chakra-ui/react";
 import Card from "../card";
 import { Header } from "./Header";
 import React from "react";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { addSection } from "src/lib/api/sectionCrud";
 import { Formik, Form, Field } from "formik";
 
@@ -21,7 +21,7 @@ export const AddSection: React.FC<Props> = (props) => {
 	return (
 		<Box position="relative">
 			<Box position="absolute" top={0}>
-				<Box pl={5}>
+				<Box pl={2}>
 					{didClick ? (
 						<Box px={0} borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 							<div>
@@ -76,8 +76,6 @@ export const AddSection: React.FC<Props> = (props) => {
 																				rounded="md"
 																				resize="vertical"
 																				maxH={250}
-																				value={field}
-																				defaultValue={values.name}
 																			/>
 																		</Box>
 																	</Box>
@@ -85,9 +83,12 @@ export const AddSection: React.FC<Props> = (props) => {
 															</div>
 														)}
 													</Field>
-													<Button mt={4} colorScheme="teal" type="submit" size="sm">
-														Add section
-													</Button>
+													<HStack mt={4}>
+														<Button colorScheme="teal" type="submit" size="md">
+															Submit
+														</Button>
+														<IconButton colorScheme="gray" aria-label="Search database" icon={<CloseIcon />} variant="ghost" onClick={toggleDidClick} />
+													</HStack>
 												</Box>
 											</Form>
 										)}
@@ -96,7 +97,11 @@ export const AddSection: React.FC<Props> = (props) => {
 							</div>
 						</Box>
 					) : (
-						<IconButton colorScheme="gray" aria-label="Search database" icon={<AddIcon />} size="lg" variant="outline" onClick={toggleDidClick} />
+						<Box width={150} justifyContent={"center"}>
+							<Center>
+								<IconButton colorScheme="gray" aria-label="Search database" icon={<AddIcon />} size="lg" variant="outline" onClick={toggleDidClick} />
+							</Center>
+						</Box>
 					)}
 				</Box>
 			</Box>

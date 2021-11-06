@@ -15,7 +15,7 @@ interface Props {
 export const Section: React.FC<Props> = (props) => {
 	const { name, id } = props;
 	const [cards, setCards] = React.useState([]);
-	const [addVisible, setAddVisible] = React.useState(true);
+	const [addVisible, setAddVisible] = React.useState(false);
 	const toggleAddVisible = () => setAddVisible(!addVisible);
 
 	const getCards = async () => {
@@ -39,7 +39,7 @@ export const Section: React.FC<Props> = (props) => {
 				<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 					<Header name={name} />
 
-					<Box paddingTop={2}>
+					<Box paddingTop={2} onDragEnd={getCards}>
 						<Droppable droppableId={id}>
 							{(provided) => {
 								return (
