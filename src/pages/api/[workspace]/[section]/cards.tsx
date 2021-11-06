@@ -7,6 +7,7 @@ connect();
 export default async (req, res) => {
 	const { method } = req;
 
+	let card;
 	switch (method) {
 		case "GET":
 			const todos = await Card.find({});
@@ -14,11 +15,16 @@ export default async (req, res) => {
 			res.json(todos);
 			break;
 		case "POST":
-			const note = await Card.create({
+			card = await Card.create({
 				name: req.body.name,
 			});
 
 			break;
+		case "DELETE":
+			card = await Card.deleteOne({ _id: req.body._id });
+
+		case "PUT":
+			card = await Card.updateOne({ _id: req.body._id, name: req.body.name });
 
 		default:
 			break;
