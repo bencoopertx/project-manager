@@ -1,4 +1,6 @@
-export const addCard = async (form) => {
+import { Card } from "src/types/cardTypes";
+
+export const addCard = async (form: Card) => {
 	try {
 		try {
 			console.log("adding cared");

@@ -57,7 +57,7 @@ export const Section: React.FC<Props> = (props) => {
 						{addVisible ? (
 							<AddCard
 								onSubmit={(name: string) => {
-									addCard({ name: name, sectionId: id });
+									addCard({ name: name, sectionId: id, index: cards.length - 1 });
 								}}
 							/>
 						) : (
