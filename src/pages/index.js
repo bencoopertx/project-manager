@@ -1,8 +1,7 @@
 import Head from "next/head";
+import React from "react";
 import Layout from "src/components/layout";
-import clientPromise from "src/lib/mongo/connect";
-export default function Home({ isConnected }) {
-	console.log("is connected", isConnected);
+function Home({ isConnected }) {
 	return (
 		<div className="container">
 			<Head>
@@ -14,3 +13,11 @@ export default function Home({ isConnected }) {
 		</div>
 	);
 }
+
+export async function getStaticProps() {
+	return {
+		props: {}, // will be passed to the page component as props
+	};
+}
+
+export default Home;

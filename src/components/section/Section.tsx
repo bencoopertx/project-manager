@@ -16,6 +16,7 @@ export const Section: React.FC<Props> = (props) => {
 	let id = 0;
 	const cards = ["Test", "Hdjdjdjdjdjjdjdjdjjdjdjdjdjdjdjjdjdjjdjdjdey", "are"];
 	const [addVisible, setAddVisible] = React.useState(true);
+
 	return (
 		<Box borderWidth="1px" borderRadius="lg" width={230} backgroundColor="gray.50" paddingBottom={0}>
 			<Header name={name} />

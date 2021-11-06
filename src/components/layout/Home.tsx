@@ -6,8 +6,26 @@ import Header from "./Header";
 import AddSection from "../section/AddSection";
 import { addSection } from "src/lib/api/sections";
 
-export const Home = () => {
-	const sections = ["To Do", "Doing", "Done"];
+interface Props {}
+
+export const Home: React.FC<Props> = (props) => {
+	const [sections, setSections] = React.useState([]);
+
+	const getSections = async () => {
+		const res = await fetch("http://localhost:3000/api/workspaces/1/sections");
+
+		let x = await res.json();
+		x = x.data;
+		console.log("x", x);
+
+		setSections(x);
+	};
+
+	React.useEffect(() => {
+		getSections();
+	});
+
+	getSections();
 
 	return (
 		<>
@@ -17,8 +35,8 @@ export const Home = () => {
 					<Box p="6" style={{ justifyContent: "center", alignContent: "center" }}>
 						<HStack spacing={"30px"}>
 							<DragDropContext onDragEnd={() => console.log("")}>
-								{sections.map((value) => (
-									<Section name={value} />
+								{sections.map(({ name }) => (
+									<Section name={name} />
 								))}
 							</DragDropContext>
 							<AddSection />

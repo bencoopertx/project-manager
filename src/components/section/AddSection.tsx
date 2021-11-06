@@ -69,8 +69,8 @@ export const AddSection: React.FC<Props> = (props) => {
 													</div>
 												)}
 											</Field>
-											<Button mt={4} colorScheme="teal" type="submit" size="md">
-												Submit
+											<Button mt={4} colorScheme="teal" type="submit" size="sm">
+												Add section
 											</Button>
 										</Box>
 									</Form>
